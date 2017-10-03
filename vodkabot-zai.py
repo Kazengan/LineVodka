@@ -60,7 +60,7 @@ tracer.addOpInterrupt(17,NOTIFIED_ACCEPT_GROUP_INVITATION)
 
 def NOTIFIED_KICKOUT_FROM_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param3).displayName + " Ciee di kick (dad)")
+        sendMessage(op.param1, client.getContact(op.param3).displayName + " Ciee di kick (dad) [BOT]")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_KICKOUT_FROM_GROUP\n\n")
@@ -70,7 +70,7 @@ tracer.addOpInterrupt(19,NOTIFIED_KICKOUT_FROM_GROUP)
 
 def NOTIFIED_LEAVE_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param2).displayName + " dadah... (cry)")
+        sendMessage(op.param1, client.getContact(op.param2).displayName + " dadah... (cry) [BOT]")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_LEAVE_GROUP\n\n")
@@ -155,27 +155,27 @@ def SEND_MESSAGE(op):
                     sendMessage(msg.to,"Group Name"+key+"Canged to")
                 if msg.text == "url":
                     sendMessage(msg.to,"line://ti/g/" + client._client.reissueGroupTicket(msg.to))
-                if msg.text == "open":
+                if msg.text == "open [BOT]":
                     group = client.getGroup(msg.to)
                     if group.preventJoinByTicket == False:
-                        sendMessage(msg.to, "already open")
+                        sendMessage(msg.to, "already open [BOT]")
                     else:
                         group.preventJoinByTicket = False
                         client.updateGroup(group)
-                        sendMessage(msg.to, "URL Opened")
+                        sendMessage(msg.to, "URL Opened [BOT]")
                 if msg.text == "close":
                     group = client.getGroup(msg.to)
                     if group.preventJoinByTicket == True:
-                        sendMessage(msg.to, "already close")
+                        sendMessage(msg.to, "already close [BOT]")
                     else:
                         group.preventJoinByTicket = True
                         client.updateGroup(group)
-                        sendMessage(msg.to, "URL closed")
+                        sendMessage(msg.to, "URL closed [BOT]")
                 if "kick:" in msg.text:
                     key = msg.text[5:]
                     client.kickoutFromGroup(msg.to, [key])
                     contact = client.getContact(key)
-                    sendMessage(msg.to, ""+contact.displayName+"dadah (cry)")
+                    sendMessage(msg.to, ""+contact.displayName+"dadah (cry) [BOT]")
                 if "nk:" in msg.text:
                     key = msg.text[3:]
                     group = client.getGroup(msg.to)
@@ -183,26 +183,26 @@ def SEND_MESSAGE(op):
                     Mids = [contact.mid for contact in group.members]
                     if key in Names:
                         kazu = Names.index(key)
-                        sendMessage(msg.to, "Maap ngga sengaja :v")
+                        sendMessage(msg.to, "Maap ngga sengaja :v [BOT]")
                         client.kickoutFromGroup(msg.to, [""+Mids[kazu]+""])
                         contact = client.getContact(Mids[kazu])
-                        sendMessage(msg.to, ""+contact.displayName+" Maap ngga sengaja :v")
+                        sendMessage(msg.to, ""+contact.displayName+" Maap ngga sengaja :v [BOT]")
                     else:
-                        sendMessage(msg.to, "hah?")
+                        sendMessage(msg.to, "hah? [BOT]")
                 if msg.text == "cancel":
                     group = client.getGroup(msg.to)
                     if group.invitee is None:
-                        sendMessage(op.message.to, "No one is inviting.")
+                        sendMessage(op.message.to, "No one is inviting. [BOT]")
                     else:
                         gInviMids = [contact.mid for contact in group.invitee]
                         client.cancelGroupInvitation(msg.to, gInviMids)
-                        sendMessage(msg.to, str(len(group.invitee)) + " Done")
+                        sendMessage(msg.to, str(len(group.invitee)) + " Done [BOT]")
                 if "invite:" in msg.text:
                     key = msg.text[-33:]
                     client.findAndAddContactsByMid(key)
                     client.inviteIntoGroup(msg.to, [key])
                     contact = client.getContact(key)
-                    sendMessage(msg.to, ""+contact.displayName+" I invited you")
+                    sendMessage(msg.to, ""+contact.displayName+" I invited you [BOT]")
                 if msg.text == "me":
                     M = Message()
                     M.to = msg.to
@@ -215,11 +215,11 @@ def SEND_MESSAGE(op):
                     contact = client.getContact(key)
                     sendMessage(msg.to, ""+contact.displayName+"'s contact")
                 if msg.text == "time":
-                    sendMessage(msg.to, "Current time is" + datetime.datetime.today().strftime('%dTanggal%mBulan%YTahun %H:%M:%S') + "is")
+                    sendMessage(msg.to, "Current time is" + datetime.datetime.today().strftime( %d Tanggal %m Bulan %Y Tahun %H:%M:%S ) + "is")
                 if msg.text == "gift":
                     sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
                 if msg.text == "cyduck mode":
-                    sendMessage(msg.to, "watchout tercyduck!")
+                    sendMessage(msg.to, "watchout tercyduck! [BOT]")
                     try:
                         del wait['readPoint'][msg.to]
                         del wait['readMember'][msg.to]
@@ -240,9 +240,9 @@ def SEND_MESSAGE(op):
                                 print rom
                                 chiya += rom[1] + "\n"
 
-                        sendMessage(msg.to, "Ciee tercyduck (dad)"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
+                        sendMessage(msg.to, "\n Ciee tercyduck (dad) [BOT]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
                     else:
-                        sendMessage(msg.to, "Pasang [cyduck mode] dulu :)")
+                        sendMessage(msg.to, "Pasang [cyduck mode] dulu :) [BOT]")
                 else:
                     pass
         else:
