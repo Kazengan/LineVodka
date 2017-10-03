@@ -60,7 +60,7 @@ tracer.addOpInterrupt(17,NOTIFIED_ACCEPT_GROUP_INVITATION)
 
 def NOTIFIED_KICKOUT_FROM_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param3).displayName + " Good Bye\n(*´･ω･*)")
+        sendMessage(op.param1, client.getContact(op.param3).displayName + " Ciee di kick (dad)")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_KICKOUT_FROM_GROUP\n\n")
@@ -70,7 +70,7 @@ tracer.addOpInterrupt(19,NOTIFIED_KICKOUT_FROM_GROUP)
 
 def NOTIFIED_LEAVE_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param2).displayName + " Good Bye\n(*´･ω･*)")
+        sendMessage(op.param1, client.getContact(op.param2).displayName + " dadah... (cry)")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_LEAVE_GROUP\n\n")
@@ -162,7 +162,7 @@ def SEND_MESSAGE(op):
                     else:
                         group.preventJoinByTicket = False
                         client.updateGroup(group)
-                        sendMessage(msg.to, "URL Open")
+                        sendMessage(msg.to, "URL Opened")
                 if msg.text == "close":
                     group = client.getGroup(msg.to)
                     if group.preventJoinByTicket == True:
@@ -170,12 +170,12 @@ def SEND_MESSAGE(op):
                     else:
                         group.preventJoinByTicket = True
                         client.updateGroup(group)
-                        sendMessage(msg.to, "URL close")
+                        sendMessage(msg.to, "URL closed")
                 if "kick:" in msg.text:
                     key = msg.text[5:]
                     client.kickoutFromGroup(msg.to, [key])
                     contact = client.getContact(key)
-                    sendMessage(msg.to, ""+contact.displayName+"sorry")
+                    sendMessage(msg.to, ""+contact.displayName+"dadah (cry)")
                 if "nk:" in msg.text:
                     key = msg.text[3:]
                     group = client.getGroup(msg.to)
@@ -183,12 +183,12 @@ def SEND_MESSAGE(op):
                     Mids = [contact.mid for contact in group.members]
                     if key in Names:
                         kazu = Names.index(key)
-                        sendMessage(msg.to, "Bye")
+                        sendMessage(msg.to, "Maap ngga sengaja :v")
                         client.kickoutFromGroup(msg.to, [""+Mids[kazu]+""])
                         contact = client.getContact(Mids[kazu])
-                        sendMessage(msg.to, ""+contact.displayName+" Sorry")
+                        sendMessage(msg.to, ""+contact.displayName+" Maap ngga sengaja :v")
                     else:
-                        sendMessage(msg.to, "wtf?")
+                        sendMessage(msg.to, "hah?")
                 if msg.text == "cancel":
                     group = client.getGroup(msg.to)
                     if group.invitee is None:
@@ -215,11 +215,11 @@ def SEND_MESSAGE(op):
                     contact = client.getContact(key)
                     sendMessage(msg.to, ""+contact.displayName+"'s contact")
                 if msg.text == "time":
-                    sendMessage(msg.to, "Current time is" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "is")
+                    sendMessage(msg.to, "Current time is" + datetime.datetime.today().strftime('%dTanggal%mBulan%YTahun %H:%M:%S') + "is")
                 if msg.text == "gift":
                     sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
-                if msg.text == "set":
-                    sendMessage(msg.to, "I have set a read point ♪\n「tes」I will show you who I have read ♪")
+                if msg.text == "cyduck mode":
+                    sendMessage(msg.to, "watchout tercyduck!")
                     try:
                         del wait['readPoint'][msg.to]
                         del wait['readMember'][msg.to]
@@ -230,7 +230,7 @@ def SEND_MESSAGE(op):
                     wait['setTime'][msg.to] = datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S')
                     wait['ROM'][msg.to] = {}
                     print wait
-                if msg.text == "tes":
+                if msg.text == "cyduck":
                     if msg.to in wait['readPoint']:
                         if wait["ROM"][msg.to].items() == []:
                             chiya = ""
@@ -240,9 +240,9 @@ def SEND_MESSAGE(op):
                                 print rom
                                 chiya += rom[1] + "\n"
 
-                        sendMessage(msg.to, "People who readed %s\nthat's it\n\nPeople who have ignored reads\n%sIt is abnormal ♪\n\nReading point creation date n time:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
+                        sendMessage(msg.to, "Ciee tercyduck (dad)"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
                     else:
-                        sendMessage(msg.to, "An already read point has not been set.\n「set」you can send ♪ read point will be created ♪")
+                        sendMessage(msg.to, "Pasang [cyduck mode] dulu :)")
                 else:
                     pass
         else:
