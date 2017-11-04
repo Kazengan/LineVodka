@@ -240,7 +240,7 @@ def SEND_MESSAGE(op):
                                 print rom
                                 chiya += rom[1] + "\n"
 
-                        sendMessage(msg.to, "\n Ciee tercyduck (dad) [BOT]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
+                        sendMessage(msg.to, "Yang ngebaca %s\nthat's it\n\ Siders yang Tercyduck :v\n%slt ciee Tercyduck :v [BOT]\n\nReading point creation date n time:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
                     else:
                         sendMessage(msg.to, "Pasang [cyduck mode] dulu :) [BOT]")
                 else:
